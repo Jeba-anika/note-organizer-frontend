@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "react-hook-form";
 import { useUserLoginMutation, useUserSignUpMutation } from "../../redux/features/user/userApi";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +11,7 @@ interface SignUpFormInput {
 }
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm<SignUpFormInput>()
     const [login] = useUserLoginMutation()
     const [signUp] = useUserSignUpMutation()
     const navigate = useNavigate()

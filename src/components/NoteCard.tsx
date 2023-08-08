@@ -1,13 +1,18 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDeleteNoteMutation } from '../redux/features/note/noteApi';
 
-const NoteCard = ({ note, isNoteChanged }) => {
+interface NoteCardProps {
+    note: any
+    isNoteChanged: any;
+}
+
+const NoteCard: React.FC<NoteCardProps> = ({ note, isNoteChanged }) => {
     const createdAt = new Date(note.createdAt)
     const date = `${createdAt.getDate()}-${createdAt.getMonth() + 1}-${createdAt.getFullYear()}`
     const [deleteNote] = useDeleteNoteMutation()
 
     const handleDeleteNote = async () => {
-        const result = await deleteNote(note.id)
+        const result: any = await deleteNote(note.id)
         if (result?.data?.statusCode === 200) {
             alert('deleted')
             isNoteChanged()

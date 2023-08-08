@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ReactQuill from 'react-quill';
 import React, { useEffect, useState } from 'react';
 import 'react-quill/dist/quill.snow.css'
@@ -5,8 +6,16 @@ import { useSaveNoteMutation, useUpdateNoteMutation } from '../redux/features/no
 import { useAppSelector } from '../redux/hook';
 import { toast } from 'react-toastify';
 
+interface TextEditorProps {
+    title: string
+    isNoteChanged: any
+    selectedCategory: any
+    selectedNote: any; // Replace 'any' with the correct type for 'selectedNote'
+    setSelectedNote: (note: unknown) => void; // Replace 'any' with the correct type for 'setSelectedNote'
+}
 
-const TextEditor = ({ selectedNote, setSelectedNote, selectedCategory, title, isNoteChanged }) => {
+
+const TextEditor: React.FC<TextEditorProps> = ({ selectedNote, setSelectedNote, selectedCategory, title, isNoteChanged }) => {
     const [text, setText] = useState(selectedNote.note)
     useEffect(() => {
         setText(selectedNote.note)
@@ -25,14 +34,14 @@ const TextEditor = ({ selectedNote, setSelectedNote, selectedCategory, title, is
             user: id
         }
         if (selectedNote.id) {
-            const result = await editNote({ id: selectedNote.id, data: payload })
+            const result: any = await editNote({ id: selectedNote.id, data: payload })
             if (result?.data.statusCode === 200) {
                 toast("Note Updated")
                 isNoteChanged()
 
             }
         } else {
-            const result = await saveNote(payload)
+            const result: any = await saveNote(payload)
             if (result.data.statusCode === 200) {
                 toast('Note Saved')
                 isNoteChanged()

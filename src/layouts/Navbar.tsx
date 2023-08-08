@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hook';
 import { removeUser } from '../redux/features/user/userSlice';

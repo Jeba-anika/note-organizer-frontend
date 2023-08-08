@@ -1,12 +1,20 @@
-import { useEffect, useState } from "react";
-import { useGetNoteOfSelectedCategoryQuery, useLazyGetNoteOfSelectedCategoryQuery } from "../redux/features/note/noteApi";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
+import { useGetNoteOfSelectedCategoryQuery } from "../redux/features/note/noteApi";
 import Loader from "./Loader";
 import NoteCard from "./NoteCard";
 import TextEditor from "./TextEditor";
 import { AiOutlinePlus } from "react-icons/ai";
 import './EachCategoryNotes.css'
 
-const EachCategoryNotes = ({ category, selectedNote, setSelectedNote }) => {
+
+
+interface EachCategoryNotesProps {
+    category: any
+    selectedNote: any;
+    setSelectedNote: any;
+}
+const EachCategoryNotes: React.FC<EachCategoryNotesProps> = ({ category, selectedNote, setSelectedNote }) => {
     const [currentPage, setCurrentPage] = useState(1)
     const { data: notes, refetch, isLoading } = useGetNoteOfSelectedCategoryQuery({ categoryId: category.id, page: currentPage }, { refetchOnMountOrArgChange: true })
     //const [selectedNote, setSelectedNote] = useState({})
@@ -84,10 +92,10 @@ const EachCategoryNotes = ({ category, selectedNote, setSelectedNote }) => {
                                         <button onClick={getNextNotes} className="join-item btn btn-outline">Next</button>
                                     </div>
                                 </div>
-                                {isLoading ? <div><Loader /></div> : <div className="flex flex-col">{notes?.data?.map(note => <li onClick={() => {
+                                {isLoading ? <div><Loader /></div> : <div className="flex flex-col">{notes?.data?.map((note: any) => <li onClick={() => {
                                     setShowEditor(true)
                                     setSelectedNote(note)
-                                }} className="mb-3"><NoteCard note={note} isNoteChange={isNoteChanged} /></li>)}</div>
+                                }} className="mb-3"><NoteCard note={note} isNoteChanged={isNoteChanged} /></li>)}</div>
                                 }
                             </ul>
 

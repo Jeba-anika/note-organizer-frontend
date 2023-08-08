@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import EachCategoryNotes from "../../components/EachCategoryNotes";
 import Loader from "../../components/Loader";
 import { useGetCategoryQuery } from "../../redux/features/note/noteApi";
@@ -6,7 +7,7 @@ import { useState } from 'react'
 import './Notes.css'
 
 const Notes = () => {
-    const [selectedCategory, setSelectedCategory] = useState({})
+    const [selectedCategory, setSelectedCategory] = useState<any>({})
     const { data: category } = useGetCategoryQuery(undefined, { refetchOnMountOrArgChange: true })
     const { email } = useAppSelector(state => state.user)
     const [selectedNote, setSelectedNote] = useState({})
@@ -30,7 +31,7 @@ const Notes = () => {
                             {/* Sidebar content here */}
                             <div className="bg-base-200 px-6 py-4 rounded-lg mb-5 flex justify-center items-center"><p className="font-bold">{email}</p></div>
                             {
-                                category?.data.map((category) => <li className="mb-2"><button className="btn" onClick={() => {
+                                category?.data.map((category: any) => <li className="mb-2"><button className="btn" onClick={() => {
                                     setSelectedCategory(category)
                                     setSelectedNote({})
                                 }}>{category.categoryName}</button></li>)

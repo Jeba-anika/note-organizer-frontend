@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "react-hook-form";
 import { useUserLoginMutation } from "../../redux/features/user/userApi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -11,7 +12,7 @@ interface LoginFormInput {
 }
 
 const Login = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInput>()
     const { email } = useAppSelector(state => state.user)
     const [login] = useUserLoginMutation()
     const navigate = useNavigate()

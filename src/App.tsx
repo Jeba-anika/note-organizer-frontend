@@ -3,7 +3,7 @@ import MainLayout from './layouts/MainLayout'
 import { useEffect } from 'react'
 import { useAppDispatch } from './redux/hook'
 import { setUser } from './redux/features/user/userSlice'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
