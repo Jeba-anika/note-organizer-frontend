@@ -1,0 +1,8 @@
+.add-note{
+    display: block;
+}
+@media screen and (min-width: 1024px) {
+    .add-note{
+        display: none;
+    }
+}
