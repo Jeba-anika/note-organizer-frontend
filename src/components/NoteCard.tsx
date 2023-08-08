@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDeleteNoteMutation } from '../redux/features/note/noteApi';
+import { toast } from 'react-toastify';
 
 interface NoteCardProps {
     note: any
@@ -14,7 +15,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, isNoteChanged }) => {
     const handleDeleteNote = async () => {
         const result: any = await deleteNote(note.id)
         if (result?.data?.statusCode === 200) {
-            alert('deleted')
+            toast('Note deleted')
             isNoteChanged()
         }
     }
